@@ -1,0 +1,84 @@
+a. Get all the countries from Asia continent /region using Filter function
+
+```js
+// Fetch the data from the API
+fetch("https://restcountries.com/v3.1/all")
+  .then((response) => response.json())
+  .then((data) => {
+    // Filter the data by the region property
+    let asianCountries = data.filter(
+      (country) => country.region === "Asia"
+    );
+    // Display the result
+    console.log(asianCountries);
+  });
+```
+
+b. Get all the countries with a population of less than 2 lakhs using Filter function
+
+```js
+// Fetch the data from the API
+fetch("https://restcountries.com/v3.1/all")
+  .then((response) => response.json())
+  .then((data) => {
+    // Filter the data by the population property
+    let smallCountries = data.filter(
+      (country) => country.population < 200000
+    );
+    // Display the result
+    console.log(smallCountries);
+  });
+```
+
+c. Print the following details name, capital, flag using forEach function
+
+```js
+// Fetch the data from the API
+fetch("https://restcountries.com/v3.1/all")
+  .then((response) => response.json())
+  .then((data) => {
+    // Loop through each country using forEach function
+    data.forEach((country) => {
+      // Print the name, capital and flag properties
+      console.log(
+        `Name: ${country.name.common}, Capital: ${
+          country.capital ? country.capital[0] : "N/A"
+        }, Flag: ${country.flags[0]}`
+      );
+    });
+  });
+```
+
+d. Print the total population of countries using reduce function
+
+```js
+// Fetch the data from the API
+fetch("https://restcountries.com/v3.1/all")
+  .then((response) => response.json())
+  .then((data) => {
+    // Reduce the data by adding up the population property of each country
+    let totalPopulation = data.reduce(
+      (sum, country) => sum + country.population,
+      0
+    );
+    // Display the result
+    console.log(`Total population: ${totalPopulation}`);
+  });
+```
+
+e. Print the country which uses US Dollars as currency.
+
+```js
+// Fetch the data from the API
+fetch("https://restcountries.com/v3.1/all")
+  .then((response) => response.json())
+  .then((data) => {
+    // Find the first country that has USD as one of its currencies
+    let usdCountry = data.find((country) =>
+      country.currencies.some((currency) => currency.code === "USD")
+    );
+    // Display the result
+    console.log(`Country that uses USD: ${usdCountry.name.common}`);
+  });
+```
+
